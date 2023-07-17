@@ -1,13 +1,10 @@
 <?php
-require_once "pdo.php";
-require_once "../category/pdo.php";
-
-$productConnection = new ProductConnection();
-$categoryConnection = new CategoryConnection();
-
-$category = $categoryConnection->getData();
-$prod = $productConnection->getProdData(); // Fetch product data
-
+    require_once "pdo.php";
+    require_once "../category/pdo.php";
+    $product = new Product(null, null, null);
+    $prod = $product->getProdData();
+    $cate = new Category();
+    $cate = $cate->getData();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,24 +25,24 @@ $prod = $productConnection->getProdData(); // Fetch product data
             <th scope="col">ID</th>
             <th scope="col">Name</th>
             <th scope="col">Price</th>
-            <th scope="col">Category</th>
+            <th scope="col">Caterory</th>
             <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
             <?php 
                 $stt = 1;
-                foreach ($prod as $value):
+                foreach($prod as $value):
             ?>
             <tr>
                 <td><?= $stt++; ?></td>
                 <td><?= $value['prodId'] ?></td>
                 <td><?= $value['prodName'] ?></td>
                 <td><?= $value['prodPrice'] ?></td>
-                <td><?= $value['name'] ?></td>
+                <td><?= $value['name'] ?> </td>
                 <td>
-                    <form id="delete_<?= $value['prodId'] ?>" action="delete.php" method="POST" style="display:flex">
-                        <a href="./edit.php?id=<?= $value['prodId'] ?>" class="btn btn-dark" style="margin-right: 5px">Edit</a>
+                    <form id="delete_<?= $value['prodId']?>" action="delete.php" method="POST" style="display:flex">
+                        <a href="./edit.php?id=<?= $value['prodId']?>" class="btn btn-dark" style="margin-right: 5px">Edit</a>
                         <input type="hidden" value="<?= $value['prodId'] ?>" name="id">
                         <a class="btn btn-dark" onclick="confirmDelete(<?= $value['prodId'] ?>)">Delete</a>
                     </form>
@@ -55,14 +52,14 @@ $prod = $productConnection->getProdData(); // Fetch product data
         </tbody>
         </table>  
     </div>
-    <script>
-        function confirmDelete(id) {
-            let result = confirm('Are you sure?');
-            if (result === true) {
-                console.log(id);
-                document.getElementById(`delete_${id}`).submit();
-            }
+<script>
+    function confirmDelete(id) {
+        let result = confirm('Are you sure?');
+        if (result === true) {
+            console.log(id);
+            document.getElementById(`delete_${id}`).submit();
         }
-    </script>
+    }
+</script>
 </body>
 </html>

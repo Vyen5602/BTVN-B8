@@ -1,6 +1,7 @@
 <?php
     require_once "pdo.php";
-    $cateArrs = getData();
+    $category = new Category();
+    $cateArrs = $category->getData();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,11 +17,12 @@
             $prodId = [
                 'id' => $_GET['id']
             ];
-            $prodArr = getOneProdData($prodId)[0];
+            $prod = new Product(null, null, null);
+            $prodArr = $prod->getOneProdData($prodId)[0];
             $cateId = [
                 'id' => $prodArr['cateId']
             ];
-            $cateArr = getOneData($cateId);
+            $cateArr = $category->getOneData($cateId);
         ?>
         <form action="action-update.php?id=<?=$prodArr['prodId'] ?>" method="POST">
         <div class="mb-3">

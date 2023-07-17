@@ -1,14 +1,13 @@
 <?php
-require_once 'pdo.php';
-require_once 'helper.php';
+    require_once 'pdo.php';
+    $categoryConnection = new CategoryConnection();
 
-$request = $_POST;
-
-$category = [
-    'name' =>$request['name'],
-    'id'=>$request['id']
-];
-
-update($category);
-redirectHome();
+    $id = ['id' => $_GET['id']];
+    $name = $_POST['name'];
+    $data = [
+        'id' => $id['id'],
+        'name' => $name
+    ];
+    $categoryConnection->updateData($data);
+    header("Location: http://localhost/BTVN-B8/Category/index.php");
 ?>

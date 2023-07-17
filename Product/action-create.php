@@ -1,12 +1,12 @@
 <?php
-require_once 'pdo.php';
-
-$data = [
-'prodId' => $_POST['prodID'],
-'prodName' => $_POST['prodName'],
-'prodPrice' => $_POST['prodPrice'],
-'cateId' => $_POST['cateId']
-];
-createNewProdData($data);
-header("Location: http://localhost/learn_php/btvn8/product/index.php");
+    require_once 'pdo.php';
+    $product = new Product(null, null, null);
+    $data = [
+        'prodId' => '',
+        'prodName' => $_POST['name'],
+        'prodPrice' => $_POST['price'],
+        'cateId' => $_POST['cateId']
+    ];
+    $product->createNewProdData($data);
+    header("Location: http://localhost/BTVN-B8/Product/index.php");
 ?>
