@@ -8,6 +8,6 @@
     ];
     $categoryConnection->deleteData($data);
 
-    header("Location: http://localhost/huyenmy/category/index.php");
+    header("Location: http://localhost/BTVN-B8/Category/index.php");
 ?>
 ?>
